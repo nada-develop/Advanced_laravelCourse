@@ -4,13 +4,14 @@ define("PATH",'media');//$path = 'media';
 if($_SERVER['REQUEST_METHOD'] == "POST"){
  
   if(isset($_POST['folder'])){
-     mkdir( PATH . DIRECTORY_SEAPARATOR . $_POST['folder']);
+     mkdir( PATH . DIRECTORY_SEPARATOR . $_POST['folder']);
      $message = "<div>Good</div>";
   }
   if(isset($_POST['filename'])){
-       echo $_POST['filename'];
-       print_r(pathinfo( $_POST['filename']));
-       $file_extension = pathinfo( $_POST['filename'])['extension'];
+       //echo $_POST['filename'];
+       //print_r(pathinfo( $_POST['filename']));
+       $file_extension = pathinfo( $_POST['filename']);
+       print_r($file_extension);die;
        $file_name = pathinfo( $_POST['filename'])['basename'];
        if(!in_array($file_extension,SUPPORTED_EXTENSION)){
         $error = "<div>error</div>";
@@ -24,13 +25,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 }
 
 
-       file_put_contents( PATH . DIRECTORY_SEAPARATOR . $file_name, $content);
+       file_put_contents( PATH . DIRECTORY_SEPARATOR . $file_name, $content);
        
   }
   
 
 
-}
+
 
 
 ?>
@@ -43,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <title>Document</title>
 </head>
 <body>
-<form class="" action="user.php" method="POST"><!--form begin-->
+<form class="" action="task.php" method="POST"><!--form begin-->
 <?= $message  ??  "" ?>
         <div class="form-group"><!--form-group begin-->
             <label >CreateFolder</label>
